@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FFB — Fitness Festival Brussels</title>
+<style>@font-face { font-family: "Anton"; font-style: normal; font-weight: 400; src: url("data:font/woff2;base64,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") format("woff2"); }</style>
+<style>
+  :root {
+    --black: #0c0c0c;
+    --black-soft: #111111;
+    --black-card: #161616;
+    --cream: #F5F1E8;
+    --cream-dim: #a9a89f;
+    --cream-mute: #6a6962;
+    --yellow: #FFD100;
+    --yellow-dark: #412402;
+    --red: #E0383B;
+    --green: #5fb86a;
+
+    /* shadcn tokens */
+    --radius: 8px;
+    --border: rgba(255,255,255,0.08);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+  }
+
+  .flag-bar { height: 4px; display: flex; }
+  .flag-bar span { flex: 1; }
+  .flag-bar .b { background: var(--black); }
+  .flag-bar .y { background: var(--yellow); }
+  .flag-bar .r { background: var(--red); }
+
+  h1, h2, .display {
+    text-transform: uppercase;
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+  }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(12,12,12,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .logo {
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--cream);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a {
+    color: var(--cream-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-links a:hover { color: var(--cream); background: rgba(255,255,255,0.05); }
+
+  /* BUTTON — shadcn Button */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.15s, background 0.15s, box-shadow 0.15s;
+    white-space: nowrap;
+  }
+  .btn:active { opacity: 0.85; transform: scale(0.98); }
+  .btn-primary { background: var(--yellow); color: var(--yellow-dark); box-shadow: var(--shadow-sm); }
+  .btn-primary:hover { opacity: 0.92; box-shadow: var(--shadow); }
+  .btn-ghost { background: transparent; color: var(--cream); border: 1px solid var(--border); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.16); }
+  .btn-sm { padding: 7px 12px; font-size: 13px; }
+
+  .menu-toggle { display: none; background: none; border: none; color: var(--cream); font-size: 24px; cursor: pointer; }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-video {
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 100%;
+    height: 140%;
+    object-fit: cover;
+    object-position: center center;
+    z-index: 0;
+    will-change: transform;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(12,12,12,0.45) 0%, rgba(12,12,12,0.68) 100%);
+    z-index: 1;
+  }
+  .hero > :not(.hero-video) { position: relative; z-index: 2; }
+
+  /* Badge — shadcn Badge */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgba(255,209,0,0.35);
+    background: rgba(255,209,0,0.08);
+    color: var(--yellow);
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 { font-size: clamp(38px, 7vw, 64px); margin-bottom: 22px; }
+  .hero p { color: var(--cream-dim); max-width: 560px; margin: 0 auto 32px; font-size: 16px; }
+  .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* TICKER */
+  .ticker-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--black-soft);
+    margin: 0 0 72px;
+    padding: 14px 0;
+  }
+  .ticker-track { display: flex; width: max-content; animation: ticker 22s linear infinite; }
+  .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 40px;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .ticker-item .ic { color: var(--yellow); font-size: 16px; }
+  .ticker-item strong { color: var(--cream); }
+  .ticker-item span { color: var(--cream-mute); margin-left: 4px; }
+  .ticker-sep { display: flex; align-items: center; padding: 0 32px; color: var(--yellow); font-size: 18px; opacity: 0.4; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* WARNING TAPE */
+  .warning-tape-outer {
+    overflow: hidden;
+    margin: 0 0 80px;
+    padding: 10px 0;
+    line-height: 0;
+  }
+  .warning-tape {
+    background: var(--yellow);
+    padding: 20px 0;
+    transform: rotate(-2deg);
+    width: 112%;
+    margin-left: -6%;
+  }
+  .warning-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 20s linear infinite;
+    align-items: center;
+  }
+  .warning-tape-outer:hover .warning-track { animation-play-state: paused; }
+  .warning-item {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(38px, 7vw, 64px);
+    text-transform: uppercase;
+    color: var(--black);
+    letter-spacing: 1px;
+    padding: 0 12px;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .warning-sep {
+    font-size: clamp(20px, 3vw, 32px);
+    color: rgba(0,0,0,0.3);
+    padding: 0 8px;
+    line-height: 1;
+  }
+
+  /* SECTIONS */
+  section { padding: 0 0 80px; scroll-margin-top: 90px; }
+  .section-head { margin-bottom: 40px; }
+  .section-head h2 { font-size: 28px; margin-bottom: 6px; }
+  .section-head p { color: var(--cream-mute); font-size: 14px; }
+
+  /* PROGRAMME — Accordion */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 4px);
+    overflow: hidden;
+  }
+  .t-item { border-bottom: 1px solid var(--border); }
+  .t-item:last-child { border-bottom: none; }
+  .t-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+  }
+  .t-row:hover { background: rgba(255,255,255,0.04); }
+  .t-item.open .t-row { background: rgba(255,255,255,0.03); }
+  .t-time { color: var(--yellow); font-weight: 600; font-size: 13px; width: 56px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .t-name { flex: 1; font-size: 15px; font-weight: 500; }
+  .t-dur {
+    color: var(--cream-mute);
+    font-size: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    padding: 2px 10px;
+  }
+  .t-chevron {
+    color: var(--cream-mute);
+    font-size: 13px;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    margin-left: 4px;
+  }
+  .t-item.open .t-chevron { transform: rotate(180deg); color: var(--yellow); }
+  .t-desc { overflow: hidden; max-height: 0; transition: max-height 0.35s ease; }
+  .t-desc-inner {
+    padding: 0 20px 18px 96px;
+    color: var(--cream-mute);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .t-item.open .t-desc { max-height: 160px; }
+
+  /* Extra card — shadcn Card */
+  .extra-card {
+    margin-top: 12px;
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 4px);
+    padding: 20px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    box-shadow: var(--shadow-sm);
+  }
+  .extra-card .ic { color: var(--yellow); font-size: 18px; margin-top: 2px; }
+  .extra-card .title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .extra-card p { color: var(--cream-mute); font-size: 13px; margin: 0; line-height: 1.6; }
+
+  /* COACHS — Creative profile cards */
+  .t-item[id] { scroll-margin-top: 100px; }
+
+  .coachs-section { padding: 0 0 80px; scroll-margin-top: 90px; }
+  .coachs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+  }
+  .coachs-header .section-head { margin-bottom: 0; }
+  .carousel-controls { display: flex; gap: 8px; flex-shrink: 0; }
+  .carousel-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    color: var(--cream);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .carousel-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+  .carousel-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+  .coach-track-wrap {
+    overflow: hidden;
+  }
+  .coach-track { display: flex; gap: 14px; transition: transform 0.35s ease; padding-right: 24px; }
+
+  .coach-card {
+    flex: 0 0 210px;
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 4px);
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .coach-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-3px); }
+  .coach-photo-wrap {
+    aspect-ratio: 3/4;
+    background: var(--black-soft);
+    position: relative;
+    overflow: hidden;
+  }
+  .coach-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .coach-initials {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Anton', sans-serif;
+    font-size: 52px;
+    color: rgba(255,255,255,0.08);
+    background: linear-gradient(160deg, #181818 0%, #111 100%);
+    letter-spacing: 2px;
+  }
+  .coach-info { padding: 14px 14px 16px; }
+  .coach-name { font-weight: 700; font-size: 14px; margin-bottom: 10px; line-height: 1.3; }
+  .coach-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .coach-tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--cream-mute);
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    cursor: pointer;
+  }
+  .coach-tag:hover {
+    background: rgba(255,209,0,0.1);
+    border-color: rgba(255,209,0,0.3);
+    color: var(--yellow);
+  }
+
+  /* LIEU */
+  .lieu-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 16px; align-items: stretch; }
+  .lieu-card {
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 4px);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .lieu-card .ic { font-size: 20px; color: var(--yellow); margin-bottom: 14px; }
+  .lieu-card .name { font-weight: 600; font-size: 16px; margin-bottom: 6px; }
+  .lieu-card .addr { color: var(--cream-mute); font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
+  .map-frame {
+    border-radius: calc(var(--radius) + 4px);
+    overflow: hidden;
+    min-height: 280px;
+    border: 1px solid var(--border);
+  }
+  .map-frame iframe { width: 100%; height: 100%; min-height: 280px; border: none; display: block; }
+
+  /* PARTENAIRES */
+  .partner-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .partner-slot {
+    background: var(--black-card);
+    border: 1px dashed rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream-mute);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  /* FINAL CTA — shadcn Card */
+  /* Billetterie */
+  #billetterie { padding: 20px 0 80px; }
+  .billet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .billet-card {
+    background: var(--black-card);
+    border-radius: calc(var(--radius) + 4px);
+    padding: 24px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .billet-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-3px); }
+  .billet-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.06);
+    color: var(--cream-dim);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    border: 1px solid var(--border);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .billet-type {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--cream-mute);
+    text-transform: uppercase;
+    margin: 0 0 6px;
+  }
+  .billet-price {
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--cream);
+    margin: 0 0 18px;
+    line-height: 1;
+  }
+  .billet-perks { list-style: none; display: flex; flex-direction: column; gap: 9px; text-align: left; margin: 0 auto 20px; flex: 1; }
+  .billet-perk { display: flex; gap: 9px; align-items: flex-start; font-size: 13px; color: var(--cream-dim); line-height: 1.5; }
+  .billet-check { color: var(--yellow); flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+  .billet-check.dim { color: var(--cream-mute); }
+  .billet-cta { margin-bottom: 14px; }
+  .billet-secure {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .billet-secure-ic { font-size: 15px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
+  .billet-secure p { font-size: 12px; color: var(--cream-mute); margin: 0; line-height: 1.6; }
+
+  .final-cta {
+    background: var(--black-card);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 8px);
+    padding: 56px 32px;
+    text-align: center;
+    margin-bottom: 80px;
+    box-shadow: var(--shadow);
+  }
+  .final-cta h2 { font-size: 30px; margin-bottom: 10px; }
+  .final-cta p { color: var(--cream-dim); margin-bottom: 28px; font-size: 15px; }
+
+  footer { border-top: 1px solid var(--border); padding: 24px; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-inner p { color: var(--cream-mute); font-size: 13px; }
+  .socials { display: flex; gap: 16px; }
+  .socials a { color: var(--cream-mute); text-decoration: none; font-size: 13px; }
+  .socials a:hover { color: var(--cream); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .menu-toggle { display: block; }
+    .coach-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .lieu-grid { grid-template-columns: 1fr; }
+    .partner-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="flag-bar"><span class="b"></span><span class="y"></span><span class="r"></span></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">FFB</a>
+    <ul class="nav-links">
+      <li><a href="#programme">Programme</a></li>
+      <li><a href="#coachs">Coachs</a></li>
+      <li><a href="#lieu">Lieu</a></li>
+      <li><a href="#partenaires">Partenaires</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#billetterie">Billets</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <img class="hero-video" src="hero.png" alt="Fitness Festival Brussels">
+  <p class="eyebrow">FITNESS FESTIVAL BRUSSELS</p>
+  <h1>Le plus grand festival fitness de Bruxelles</h1>
+  <div class="hero-ctas">
+    <a class="btn btn-primary" href="#billetterie">Réserver ma place</a>
+    <a class="btn btn-ghost" href="#programme">Voir le programme</a>
+  </div>
+</header>
+
+
+<div class="ticker-wrap">
+    <div class="ticker-track">
+      <!-- set 1 -->
+      <div class="ticker-item"><span class="ic">📅</span><strong>Sam. 11 juillet 2026</strong><span>9h00 — 18h00</span></div>
+      <div class="ticker-sep">✦</div>
+      <div class="ticker-item"><span class="ic">📍</span><strong>Salle Omnisport de Jette</strong><span>Bruxelles</span></div>
+      <div class="ticker-sep">✦</div>
+      <div class="ticker-item"><span class="ic">💪</span><strong>Tous niveaux</strong><span>Débutant à confirmé</span></div>
+      <div class="ticker-sep">✦</div>
+      <div class="ticker-item"><span class="ic">🎟️</span><strong>Places limitées</strong><span>Réservation en ligne</span></div>
+      <div class="ticker-sep">✦</div>
+      <div class="ticker-item"><span class="ic">🏋️</span><strong>8 cours collectifs</strong><span>Body Pump · Combat · Dance · Grit…</span></div>
+      <div class="ticker-sep">✦</div>
+      <!-- set 2 (clone pour boucle seamless) -->
+      <div class="ticker-item"><span class="ic">📅</span><strong>Sam. 11 juillet 2026</strong><span>9h00 — 18h00</span></div>
+      <div class="ticker-sep">✦</div>
+      <div class="ticker-item"><span class="ic">📍</span><strong>Salle Omnisport de Jette</strong><span>Bruxelles</span></div>
+      <div class="ticker-sep">✦</div>
+      <div class="ticker-item"><span class="ic">💪</span><strong>Tous niveaux</strong><span>Débutant à confirmé</span></div>
+      <div class="ticker-sep">✦</div>
+      <div class="ticker-item"><span class="ic">🎟️</span><strong>Places limitées</strong><span>Réservation en ligne</span></div>
+      <div class="ticker-sep">✦</div>
+      <div class="ticker-item"><span class="ic">🏋️</span><strong>8 cours collectifs</strong><span>Body Pump · Combat · Dance · Grit…</span></div>
+      <div class="ticker-sep">✦</div>
+    </div>
+  </div>
+
+<div class="wrap">
+
+  <p style="color:var(--cream-dim);max-width:600px;margin:0 auto 80px;font-size:16px;text-align:center;line-height:1.7;">Le 11 juillet, rejoignez-nous pour une journée placée sous le signe du sport, de l'énergie et du partage. Plus de 8 heures de cours collectifs, dans une ambiance unique où toute une communauté se rassemble autour d'une même passion.</p>
+
+  <section id="programme">
+    <div class="section-head">
+      <h2>Le déroulé de la journée</h2>
+      <p>8 cours, 8 énergies différentes, une seule journée</p>
+    </div>
+    <div class="timeline">
+      <div class="t-item" id="cours-body-pump">
+        <div class="t-row"><span class="t-time">8h45</span><span class="t-name">Body Pump Heavy</span><span class="t-dur">50 min</span><span class="t-chevron">▾</span></div>
+        <div class="t-desc"><div class="t-desc-inner">Barres et poids libres au rythme de la musique. Ce cours de musculation cible tous les groupes musculaires en séries longues à charge modérée — idéal pour tonifier et développer l'endurance musculaire sans prise de masse.</div></div>
+      </div>
+      <div class="t-item" id="cours-body-attack">
+        <div class="t-row"><span class="t-time">10h00</span><span class="t-name">Body Attack</span><span class="t-dur">50 min</span><span class="t-chevron">▾</span></div>
+        <div class="t-desc"><div class="t-desc-inner">Cardio haute intensité inspiré de l'athlétisme et des sports collectifs. Sauts, sprints et enchaînements explosifs sur des tempos élevés. L'un des cours les plus exigeants du festival — prévois de l'eau.</div></div>
+      </div>
+      <div class="t-item" id="cours-body-balance">
+        <div class="t-row"><span class="t-time">11h15</span><span class="t-name">Body Balance</span><span class="t-dur">50 min</span><span class="t-chevron">▾</span></div>
+        <div class="t-desc"><div class="t-desc-inner">Fusion de yoga, taï-chi et pilates. Mouvements lents, étirements profonds et respiration guidée — le moment de récupération idéal après les séances intenses du matin, accessible à tous les niveaux.</div></div>
+      </div>
+      <div class="t-item" id="cours-lm-grit">
+        <div class="t-row"><span class="t-time">12h30</span><span class="t-name">LM Grit</span><span class="t-dur">30 min</span><span class="t-chevron">▾</span></div>
+        <div class="t-desc"><div class="t-desc-inner">HIIT pur au poids du corps. Burpees, squats jump, mountain climbers… Des intervalles courts poussés à 100 % pour brûler un maximum en un minimum de temps. Court, intense, efficace.</div></div>
+      </div>
+      <div class="t-item" id="cours-lm-dance">
+        <div class="t-row"><span class="t-time">13h15</span><span class="t-name">LM Dance &amp; Body Jam</span><span class="t-dur">50 min</span><span class="t-chevron">▾</span></div>
+        <div class="t-desc"><div class="t-desc-inner">Chorégraphies festives inspirées du hip-hop, de la samba et du reggaeton. Le cours où tu oublies que tu fais du sport tant l'énergie collective est communicative. Zéro niveau requis, 100 % bonne humeur.</div></div>
+      </div>
+      <div class="t-item" id="cours-x-core">
+        <div class="t-row"><span class="t-time">14h30</span><span class="t-name">X Core</span><span class="t-dur">45 min</span><span class="t-chevron">▾</span></div>
+        <div class="t-desc"><div class="t-desc-inner">45 minutes dédiées au gainage et au renforcement profond de la sangle abdominale. Planches, rotations et exercices au sol pour construire un core solide et améliorer la posture globale.</div></div>
+      </div>
+      <div class="t-item" id="cours-afro-dance">
+        <div class="t-row"><span class="t-time">15h45</span><span class="t-name">Afro Dance</span><span class="t-dur">50 min</span><span class="t-chevron">▾</span></div>
+        <div class="t-desc"><div class="t-desc-inner">Énergie, rythmes africains et mouvements de hanches explosifs. Un cours libérateur qui mêle fitness et culture, porté par des beats afrobeat entraînants. Le genre de cours qui met tout le monde de bonne humeur.</div></div>
+      </div>
+      <div class="t-item" id="cours-body-combat">
+        <div class="t-row"><span class="t-time">17h00</span><span class="t-name">Body Combat</span><span class="t-dur">55 min</span><span class="t-chevron">▾</span></div>
+        <div class="t-desc"><div class="t-desc-inner">L'apothéose de la journée. Inspiré de la boxe, du karaté et du muay-thaï, ce cours cardio intense enchaîne coups de poing, kicks et esquives sur une bande-son électrisante. Terminer en beauté, façon champion.</div></div>
+      </div>
+    </div>
+    <div class="extra-card">
+      <div class="ic">&#10024;</div>
+      <div>
+        <p class="title">Et bien plus encore</p>
+        <p>Espace nutrition sportive, stands de marques partenaires, animations et surprises tout au long de la journée.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="billetterie">
+    <div class="section-head">
+      <h2>Choisis ton pass</h2>
+      <p>Optez pour la formule qui vous convient</p>
+    </div>
+    <div class="billet-grid">
+      <div class="billet-card">
+        <span class="billet-badge">Populaire</span>
+        <p class="billet-type">Pass journée entière</p>
+        <p class="billet-price">40€</p>
+        <ul class="billet-perks">
+          <li class="billet-perk"><span class="billet-check">✓</span><span>Accès à tous les cours de la journée</span></li>
+          <li class="billet-perk"><span class="billet-check">✓</span><span>Espaces partenaires et nutrition</span></li>
+          <li class="billet-perk"><span class="billet-check">✓</span><span>Animations toute la journée</span></li>
+        </ul>
+        <a class="btn btn-primary" href="https://www.billetweb.fr/shop.php?event=brussels-fitness-festival" onclick="var w=window.open('https://www.billetweb.fr/shop.php?event=brussels-fitness-festival&popup=1','Reserver','width=650,height=600,top=100,left=100,toolbar=no,resizable=yes,scrollbars=yes,status=no'); w.focus(); return false;">Réserver</a>
+      </div>
+      <div class="billet-card">
+        <span class="billet-badge" aria-hidden="true" style="visibility:hidden;">·</span>
+        <p class="billet-type">Cours à l'unité</p>
+        <p class="billet-price">10€</p>
+        <ul class="billet-perks">
+          <li class="billet-perk"><span class="billet-check">✓</span><span>Accès à 1 cours au choix</span></li>
+          <li class="billet-perk"><span class="billet-check">✓</span><span>Espaces partenaires et nutrition</span></li>
+          <li class="billet-perk"><span class="billet-check">✓</span><span>Animations toute la journée</span></li>
+        </ul>
+        <a class="btn btn-primary" href="https://www.billetweb.fr/shop.php?event=brussels-fitness-festival" onclick="var w=window.open('https://www.billetweb.fr/shop.php?event=brussels-fitness-festival&popup=1','Reserver','width=650,height=600,top=100,left=100,toolbar=no,resizable=yes,scrollbars=yes,status=no'); w.focus(); return false;">Réserver</a>
+      </div>
+    </div>
+    <div class="billet-secure">
+      <span class="billet-secure-ic">✔</span>
+      <p>Paiement sécurisé via Billetweb · billet envoyé par e-mail avec QR code · contrôle d'accès le jour J</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="warning-tape-outer">
+  <div class="warning-tape">
+    <div class="warning-track">
+      <span class="warning-item">Bouge.</span>
+      <span class="warning-item">Transpire.</span>
+      <span class="warning-item">Recommence.</span>
+      <span class="warning-item">Bouge.</span>
+      <span class="warning-item">Transpire.</span>
+      <span class="warning-item">Recommence.</span>
+      <span class="warning-item">Bouge.</span>
+      <span class="warning-item">Transpire.</span>
+      <span class="warning-item">Recommence.</span>
+      <span class="warning-item">Bouge.</span>
+      <span class="warning-item">Transpire.</span>
+      <span class="warning-item">Recommence.</span>
+    </div>
+  </div>
+</div>
+
+<section id="coachs" class="coachs-section">
+  <div class="coachs-header wrap">
+    <div class="section-head">
+      <h2>Les coachs</h2>
+      <p>Des passionnés pour vous porter toute la journée</p>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-btn prev" aria-label="Précédent">‹</button>
+      <button class="carousel-btn next" aria-label="Suivant">›</button>
+    </div>
+  </div>
+  <div class="coach-track-wrap">
+        <div class="coach-track">
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">BN</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Bin-Adam Ntumba</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-combat">Body Combat</a><a class="coach-tag" href="#cours-body-attack">Body Attack</a></div>
+            </div>
+          </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">BK</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Boris Kipeya</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-combat">Body Combat</a><a class="coach-tag" href="#cours-body-attack">Body Attack</a></div>
+            </div>
+          </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">KM</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Kandi Mukole</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-lm-grit">LM Grit</a><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-combat">Body Combat</a><a class="coach-tag" href="#cours-body-attack">Body Attack</a></div>
+            </div>
+          </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">MD</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Morgane Delgeye</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-body-combat">Body Combat</a><a class="coach-tag" href="#cours-body-attack">Body Attack</a><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-balance">Body Balance</a></div>
+            </div>
+          </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">AG</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Alexandre Gielen</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-x-core">LM Core</a></div>
+            </div>
+          </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">CC</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Claude Conde</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-balance">Body Balance</a><a class="coach-tag" href="#cours-lm-grit">LM Grit</a></div>
+            </div>
+          </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">GA</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Geoffrey Arabia</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-combat">Body Combat</a><a class="coach-tag" href="#cours-lm-grit">LM Grit</a></div>
+            </div>
+          </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">JV</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Julie Vanschuerbeek</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-body-attack">Body Attack</a><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-combat">Body Combat</a></div>
+            </div>
+          </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">AB</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Amal Boulakjar</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-body-attack">Body Attack</a><a class="coach-tag" href="#cours-afro-dance">LM Sprint</a></div>
+            </div>
+          </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">TI</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Tania Iacovelli</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-body-attack">Body Attack</a><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-balance">Body Balance</a></div>
+            </div>
+          </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">CV</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Carole Vancotenberg</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-lm-dance">Body Jam</a><a class="coach-tag" href="#cours-lm-dance">LM Dance</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <section id="lieu">
+    <div class="section-head">
+      <h2>Le lieu</h2>
+    </div>
+    <div class="lieu-grid">
+      <div class="lieu-card">
+        <div class="ic">&#128205;</div>
+        <p class="name">Salle Omnisport de Jette</p>
+        <p class="addr">Avenue du Comté de Jette<br>Jette, Belgique</p>
+        <a class="btn btn-ghost btn-sm" style="width:fit-content;" href="https://maps.google.fr/maps?daddr=Salle+Omnisport+de+Jette%2C+Avenue+du+Comt%C3%A9+de+Jette%2C+Jette%2C+Belgique" target="_blank" rel="noopener">Itinéraire</a>
+      </div>
+      <div class="map-frame">
+        <iframe
+          src="https://maps.google.com/maps?q=Salle%20Omnisport%20de%20Jette%2C%20Avenue%20du%20Comt%C3%A9%20de%20Jette%2C%20Jette%2C%20Belgique&t=&z=15&ie=UTF8&output=embed"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="partenaires">
+    <div class="section-head">
+      <h2>Ils nous accompagnent</h2>
+    </div>
+    <!-- TODO: remplacer par les vrais logos partenaires -->
+    <div class="partner-grid">
+      <div class="partner-slot">Partenaire</div>
+      <div class="partner-slot">Partenaire</div>
+      <div class="partner-slot">Partenaire</div>
+      <div class="partner-slot">Partenaire</div>
+    </div>
+  </section>
+
+  <div class="final-cta">
+    <h2>Prêt(e) à te dépasser ?</h2>
+    <p>Les places sont limitées — réserve ton pass dès maintenant.</p>
+    <a class="btn btn-primary" href="https://www.billetweb.fr/brussels-fitness-festival" target="_blank" rel="noopener">Réserver ma place</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <p>FFB — Fitness Festival Brussels</p>
+    <div class="socials">
+      <a href="https://www.instagram.com/ffb.fitnessevent/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Accordion programme
+document.querySelectorAll('.t-row').forEach(function(row) {
+  row.addEventListener('click', function() {
+    var item = this.closest('.t-item');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.t-item.open').forEach(function(el) { el.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// Carousel coachs — infinite loop
+(function() {
+  var track = document.querySelector('.coach-track');
+  var btnPrev = document.querySelector('.carousel-btn.prev');
+  var btnNext = document.querySelector('.carousel-btn.next');
+
+  // Build 3× track: [clones][originals][clones]
+  var origCards = Array.from(track.children);
+  var N = origCards.length; // 11
+
+  origCards.forEach(function(card) {
+    track.appendChild(card.cloneNode(true));
+  });
+  for (var i = N - 1; i >= 0; i--) {
+    track.insertBefore(origCards[i].cloneNode(true), track.firstChild);
+  }
+
+  // Badge delegation — covers originals AND clones
+  track.addEventListener('click', function(e) {
+    var tag = e.target.closest('.coach-tag[href]');
+    if (!tag) return;
+    var href = tag.getAttribute('href');
+    if (!href || href[0] !== '#') return;
+    var target = document.querySelector(href);
+    if (!target || !target.classList.contains('t-item')) return;
+    e.preventDefault();
+    document.querySelectorAll('.t-item.open').forEach(function(el) { el.classList.remove('open'); });
+    target.classList.add('open');
+    setTimeout(function() { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 50);
+  });
+
+  var STEP = 1;
+  var animating = false;
+  var offset = 0;
+
+  function cardStep() {
+    var card = track.querySelector('.coach-card');
+    return card ? card.offsetWidth + 14 : 224;
+  }
+
+  function jump(val) {
+    track.style.transition = 'none';
+    offset = val;
+    track.style.transform = 'translateX(-' + offset + 'px)';
+    track.offsetHeight; // force reflow
+    track.style.transition = 'transform 0.35s ease';
+  }
+
+  function slide(val) {
+    offset = val;
+    track.style.transition = 'transform 0.35s ease';
+    track.style.transform = 'translateX(-' + offset + 'px)';
+  }
+
+  function checkBounds() {
+    var zone = N * cardStep();
+    if (offset >= 2 * zone) {
+      jump(offset - zone);
+    } else if (offset < 0) {
+      jump(offset + zone);
+    }
+    animating = false;
+  }
+
+  // Start with 1/4 of first card peeking on the left
+  var peekOffset = Math.round((track.querySelector('.coach-card').offsetWidth || 210) * 0.25);
+  jump(N * cardStep() + peekOffset);
+
+  btnNext.addEventListener('click', function() {
+    if (animating) return;
+    animating = true;
+    slide(offset + STEP * cardStep());
+    setTimeout(checkBounds, 370);
+  });
+
+  btnPrev.addEventListener('click', function() {
+    if (animating) return;
+    animating = true;
+    slide(offset - STEP * cardStep());
+    setTimeout(checkBounds, 370);
+  });
+
+  btnPrev.disabled = false;
+  btnNext.disabled = false;
+})();
+
+(function() {
+  var img = document.querySelector('.hero-video');
+  var hero = document.querySelector('.hero');
+  function parallax() {
+    var scrollY = window.pageYOffset;
+    if (scrollY < hero.offsetHeight + 100) {
+      img.style.transform = 'translateY(' + (scrollY * 0.38) + 'px)';
+    }
+  }
+  window.addEventListener('scroll', parallax, { passive: true });
+})();
+</script>
+</body>
+</html>
