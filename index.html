@@ -495,6 +495,21 @@
   .socials a { color: var(--cream-mute); text-decoration: none; font-size: 13px; }
   .socials a:hover { color: var(--cream); }
 
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal[data-delay="1"] { transition-delay: 120ms; }
+  .reveal[data-delay="2"] { transition-delay: 240ms; }
+  .reveal[data-delay="3"] { transition-delay: 360ms; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
   @media (max-width: 720px) {
     .nav-links { display: none; }
     .menu-toggle { display: block; }
@@ -561,14 +576,14 @@
 
 <div class="wrap">
 
-  <p style="color:var(--cream-dim);max-width:600px;margin:0 auto 80px;font-size:16px;text-align:center;line-height:1.7;">Le 11 juillet, rejoignez-nous pour une journée placée sous le signe du sport, de l'énergie et du partage. Plus de 8 heures de cours collectifs, dans une ambiance unique où toute une communauté se rassemble autour d'une même passion.</p>
+  <p class="reveal" style="color:var(--cream-dim);max-width:600px;margin:0 auto 80px;font-size:16px;text-align:center;line-height:1.7;">Le 11 juillet, rejoignez-nous pour une journée placée sous le signe du sport, de l'énergie et du partage. Plus de 8 heures de cours collectifs, dans une ambiance unique où toute une communauté se rassemble autour d'une même passion.</p>
 
   <section id="programme">
-    <div class="section-head">
+    <div class="section-head reveal">
       <h2>Le déroulé de la journée</h2>
       <p>8 cours, 8 énergies différentes, une seule journée</p>
     </div>
-    <div class="timeline">
+    <div class="timeline reveal" data-delay="1">
       <div class="t-item" id="cours-body-pump">
         <div class="t-row"><span class="t-time">8h45</span><span class="t-name">Body Pump Heavy</span><span class="t-dur">50 min</span><span class="t-chevron">▾</span></div>
         <div class="t-desc"><div class="t-desc-inner">Barres et poids libres au rythme de la musique. Ce cours de musculation cible tous les groupes musculaires en séries longues à charge modérée — idéal pour tonifier et développer l'endurance musculaire sans prise de masse.</div></div>
@@ -602,7 +617,7 @@
         <div class="t-desc"><div class="t-desc-inner">L'apothéose de la journée. Inspiré de la boxe, du karaté et du muay-thaï, ce cours cardio intense enchaîne coups de poing, kicks et esquives sur une bande-son électrisante. Terminer en beauté, façon champion.</div></div>
       </div>
     </div>
-    <div class="extra-card">
+    <div class="extra-card reveal" data-delay="2">
       <div class="ic">&#10024;</div>
       <div>
         <p class="title">Et bien plus encore</p>
@@ -612,12 +627,12 @@
   </section>
 
   <section id="billetterie">
-    <div class="section-head">
+    <div class="section-head reveal">
       <h2>Choisis ton pass</h2>
       <p>Optez pour la formule qui vous convient</p>
     </div>
     <div class="billet-grid">
-      <div class="billet-card">
+      <div class="billet-card reveal">
         <span class="billet-badge">Populaire</span>
         <p class="billet-type">Pass journée entière</p>
         <p class="billet-price">40€</p>
@@ -628,7 +643,7 @@
         </ul>
         <a class="btn btn-primary" href="https://www.billetweb.fr/shop.php?event=brussels-fitness-festival" onclick="var w=window.open('https://www.billetweb.fr/shop.php?event=brussels-fitness-festival&popup=1','Reserver','width=650,height=600,top=100,left=100,toolbar=no,resizable=yes,scrollbars=yes,status=no'); w.focus(); return false;">Réserver</a>
       </div>
-      <div class="billet-card">
+      <div class="billet-card reveal" data-delay="1">
         <span class="billet-badge" aria-hidden="true" style="visibility:hidden;">·</span>
         <p class="billet-type">Cours à l'unité</p>
         <p class="billet-price">10€</p>
@@ -640,7 +655,7 @@
         <a class="btn btn-primary" href="https://www.billetweb.fr/shop.php?event=brussels-fitness-festival" onclick="var w=window.open('https://www.billetweb.fr/shop.php?event=brussels-fitness-festival&popup=1','Reserver','width=650,height=600,top=100,left=100,toolbar=no,resizable=yes,scrollbars=yes,status=no'); w.focus(); return false;">Réserver</a>
       </div>
     </div>
-    <div class="billet-secure">
+    <div class="billet-secure reveal" data-delay="2">
       <span class="billet-secure-ic">✔</span>
       <p>Paiement sécurisé via Billetweb · billet envoyé par e-mail avec QR code · contrôle d'accès le jour J</p>
     </div>
@@ -670,7 +685,7 @@
 <section id="coachs" class="coachs-section">
   <div class="coachs-header wrap">
     <div class="section-head">
-      <h2>Les coachs</h2>
+      <h2 class="reveal">Les coachs</h2>
       <p>Des passionnés pour vous porter toute la journée</p>
     </div>
     <div class="carousel-controls">
@@ -765,17 +780,17 @@
 <div class="wrap">
 
   <section id="lieu">
-    <div class="section-head">
+    <div class="section-head reveal">
       <h2>Le lieu</h2>
     </div>
     <div class="lieu-grid">
-      <div class="lieu-card">
+      <div class="lieu-card reveal">
         <div class="ic">&#128205;</div>
         <p class="name">Salle Omnisport de Jette</p>
         <p class="addr">Avenue du Comté de Jette<br>Jette, Belgique</p>
         <a class="btn btn-ghost btn-sm" style="width:fit-content;" href="https://maps.google.fr/maps?daddr=Salle+Omnisport+de+Jette%2C+Avenue+du+Comt%C3%A9+de+Jette%2C+Jette%2C+Belgique" target="_blank" rel="noopener">Itinéraire</a>
       </div>
-      <div class="map-frame">
+      <div class="map-frame reveal" data-delay="1">
         <iframe
           src="https://maps.google.com/maps?q=Salle%20Omnisport%20de%20Jette%2C%20Avenue%20du%20Comt%C3%A9%20de%20Jette%2C%20Jette%2C%20Belgique&t=&z=15&ie=UTF8&output=embed"
           allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -785,19 +800,19 @@
   </section>
 
   <section id="partenaires">
-    <div class="section-head">
+    <div class="section-head reveal">
       <h2>Ils nous accompagnent</h2>
     </div>
     <!-- TODO: remplacer par les vrais logos partenaires -->
     <div class="partner-grid">
-      <div class="partner-slot">Partenaire</div>
-      <div class="partner-slot">Partenaire</div>
-      <div class="partner-slot">Partenaire</div>
-      <div class="partner-slot">Partenaire</div>
+      <div class="partner-slot reveal">Partenaire</div>
+      <div class="partner-slot reveal">Partenaire</div>
+      <div class="partner-slot reveal">Partenaire</div>
+      <div class="partner-slot reveal">Partenaire</div>
     </div>
   </section>
 
-  <div class="final-cta">
+  <div class="final-cta reveal">
     <h2>Prêt(e) à te dépasser ?</h2>
     <p>Les places sont limitées — réserve ton pass dès maintenant.</p>
     <a class="btn btn-primary" href="https://www.billetweb.fr/brussels-fitness-festival" target="_blank" rel="noopener">Réserver ma place</a>
@@ -921,6 +936,19 @@ document.querySelectorAll('.t-row').forEach(function(row) {
     }
   }
   window.addEventListener('scroll', parallax, { passive: true });
+})();
+
+// Scroll reveal
+(function() {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
 })();
 </script>
 </body>
