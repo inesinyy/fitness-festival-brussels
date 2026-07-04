@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A single-page static site for FFB (Fitness Festival Brussels), a fitness event landing page. There is no build system, no package manager, and no framework — everything lives in one file: [index.html](index.html). CSS is inline in a `<style>` block, JS is inline in a `<script>` block at the bottom, and the page content is in French.
 
-Assets referenced from `index.html`: [logo.jpg](logo.jpg), [hero.png](hero.png) (hero background image), [hero.mp4](hero.mp4) (currently unused by the markup — the hero uses `hero.png`, not the video).
+Assets referenced from `index.html`: [logo.jpg](logo.jpg), [hero.png](hero.png) (hero background image, `.hero-video` class), and per-coach photos at repo root (`coach-<name>.jpg`, e.g. [coach-bin.jpg](coach-bin.jpg)) referenced by filename in each `.coach-card`. The [assets/](assets/) directory holds source/working copies of these images (higher-res `.png` originals plus `hero.mp4`) and is not itself referenced by `index.html` — treat it as a staging folder, not a served path.
 
 ## Running locally
 
@@ -36,7 +36,7 @@ The page is one long scrolling document composed of stacked sections, all anchor
 - **Ticker** — an infinite auto-scrolling marquee of event facts; built by duplicating the same set of `.ticker-item`s twice in markup for a seamless CSS `@keyframes` loop.
 - **Programme (`#programme`)** — accordion-style timeline (`.t-item` / `.t-row` / `.t-desc`). Each course row has a fixed `id` (e.g. `#cours-body-pump`, `#cours-body-combat`) that is linked to from the coach tags below — clicking a coach's course tag opens and scrolls to that course.
 - **Billetterie (`#billetterie`)** — pricing cards linking out to Billetweb (`billetweb.fr`) ticket sales, opened in a popup window via inline `onclick`.
-- **Coachs (`#coachs`)** — an infinite-loop carousel built by JS: the original card set is cloned twice (once prepended, once appended) to fake infinite scrolling, then the track is jumped to the middle set on load. Coach `.coach-tag` links point to `#cours-*` anchors and are wired via event delegation on the track (so it works for both original and cloned cards).
+- **Coachs (`#coachs`)** — an infinite-loop carousel built by JS: the original card set is cloned twice (once prepended, once appended) to fake infinite scrolling, then the track is jumped to the middle set on load. Coach `.coach-tag` links point to `#cours-*` anchors and are wired via event delegation on the track (so it works for both original and cloned cards). Coaches without a photo yet use a `.coach-initials` placeholder (two-letter initials) inside `.coach-photo-wrap` instead of an `<img>`.
 - **Lieu (`#lieu`)** — venue info with an embedded Google Maps iframe.
 - **Partenaires (`#partenaires`)** — placeholder logo slots (marked with a TODO comment in the markup) awaiting real partner logos.
 - **Scroll reveal** — any element with class `.reveal` (optionally `data-delay="1|2|3"` for staggered timing) fades/slides in via a single shared `IntersectionObserver`, respecting `prefers-reduced-motion`.

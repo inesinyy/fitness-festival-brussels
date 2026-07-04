@@ -3,12 +3,9 @@
   "configurations": [
     {
       "name": "static-server",
-      "runtimeExecutable": "/usr/bin/perl",
-      "runtimeArgs": [
-        "-e",
-        "use IO::Socket::INET;\nmy %mime=('html','text/html; charset=utf-8','mp4','video/mp4','webp','image/webp','jpg','image/jpeg','png','image/png','css','text/css','js','application/javascript');\nmy $srv=IO::Socket::INET->new(LocalAddr=>'0.0.0.0',LocalPort=>3000,Listen=>10,ReuseAddr=>1,Proto=>'tcp') or die $!;\n$|=1; print \"Serving http://localhost:3000\\n\";\nwhile(1){\n  my $c=$srv->accept() or next;\n  my $req=''; while(my $l=<$c>){ $req.=$l; last if $l=~/^[\\r\\n]+$/; }\n  my($p)=($req=~/^[A-Z]+\\s+(\\S+)/); $p//='/';\n  $p=~s/\\?.*//;\n  my $file;\n  if($p eq '/' or $p eq '/index.html'){ $file='/tmp/ffb_index.html'; }\n  elsif($p eq '/video' or $p eq '/hero.mp4'){ $file='/tmp/ffb_hero.mp4'; }\n  elsif($p eq '/hero.png'){ $file='/tmp/ffb_hero.png'; }\n  elsif($p eq '/logo.jpg'){ $file='/tmp/ffb_logo.jpg'; }\n  else { print $c \"HTTP/1.0 404 Not Found\\r\\n\\r\\n404\"; close $c; next; }\n  open my $fh,'<:raw',$file or do{ print $c \"HTTP/1.0 403 Forbidden\\r\\n\\r\\n$!\"; close $c; next; };\n  (my $ext=$file)=~s/.*\\.//;\n  my $ct=$mime{lc($ext)}//'application/octet-stream';\n  local $/; my $b=<$fh>; close $fh;\n  print $c \"HTTP/1.0 200 OK\\r\\nContent-Type: $ct\\r\\nContent-Length: \".length($b).\"\\r\\nConnection: close\\r\\n\\r\\n\".$b;\n  close $c;\n}"
-      ],
-      "port": 3000
+      "runtimeExecutable": "perl",
+      "runtimeArgs": ["/Users/inesiny/Claude/Projets-Web/ffb-fitness-festival/server.pl"],
+      "autoPort": true
     }
   ]
 }

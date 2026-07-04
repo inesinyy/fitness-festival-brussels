@@ -4,7 +4,7 @@ use File::Basename;
 use POSIX qw(WNOHANG);
 
 my $root = dirname(__FILE__);
-my $port = $ARGV[0] || 3000;
+my $port = $ENV{PORT} || $ARGV[0] || 3000;
 
 my %mime = (
     html => 'text/html; charset=utf-8',
