@@ -338,7 +338,8 @@
     position: relative;
     overflow: hidden;
   }
-  .coach-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .coach-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); transition: filter 0.3s; }
+  .coach-card:hover .coach-photo-wrap img { filter: grayscale(20%); }
   .coach-initials {
     width: 100%;
     height: 100%;
@@ -397,20 +398,20 @@
   .map-frame iframe { width: 100%; height: 100%; min-height: 280px; border: none; display: block; }
 
   /* PARTENAIRES */
-  .partner-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .partner-slot {
     background: var(--black-card);
-    border: 1px dashed rgba(255,255,255,0.1);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
     color: var(--cream-mute);
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.5px;
   }
+  .partner-slot img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); transition: filter 0.3s; }
+  .partner-slot:hover img { filter: grayscale(0%); }
 
   /* FINAL CTA — shadcn Card */
   /* Billetterie */
@@ -552,7 +553,7 @@
       <!-- set 1 -->
       <div class="ticker-item"><span class="ic">📅</span><strong>Sam. 11 juillet 2026</strong><span>9h00 — 18h00</span></div>
       <div class="ticker-sep">✦</div>
-      <div class="ticker-item"><span class="ic">📍</span><strong>Salle Omnisport de Jette</strong><span>Bruxelles</span></div>
+      <div class="ticker-item"><span class="ic">📍</span><strong>Basic Fit Jette VUB</strong><span>Bruxelles</span></div>
       <div class="ticker-sep">✦</div>
       <div class="ticker-item"><span class="ic">💪</span><strong>Tous niveaux</strong><span>Débutant à confirmé</span></div>
       <div class="ticker-sep">✦</div>
@@ -563,7 +564,7 @@
       <!-- set 2 (clone pour boucle seamless) -->
       <div class="ticker-item"><span class="ic">📅</span><strong>Sam. 11 juillet 2026</strong><span>9h00 — 18h00</span></div>
       <div class="ticker-sep">✦</div>
-      <div class="ticker-item"><span class="ic">📍</span><strong>Salle Omnisport de Jette</strong><span>Bruxelles</span></div>
+      <div class="ticker-item"><span class="ic">📍</span><strong>Basic Fit Jette VUB</strong><span>Bruxelles</span></div>
       <div class="ticker-sep">✦</div>
       <div class="ticker-item"><span class="ic">💪</span><strong>Tous niveaux</strong><span>Débutant à confirmé</span></div>
       <div class="ticker-sep">✦</div>
@@ -703,13 +704,6 @@
             </div>
           </div>
           <div class="coach-card">
-            <div class="coach-photo-wrap"><div class="coach-initials">BK</div></div>
-            <div class="coach-info">
-              <p class="coach-name">Boris Kipeya</p>
-              <div class="coach-tags"><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-combat">Body Combat</a><a class="coach-tag" href="#cours-body-attack">Body Attack</a></div>
-            </div>
-          </div>
-          <div class="coach-card">
             <div class="coach-photo-wrap"><img src="coach-kandi.jpg" alt="Kandi Mukole" loading="lazy"></div>
             <div class="coach-info">
               <p class="coach-name">Kandi Mukole</p>
@@ -728,20 +722,6 @@
             <div class="coach-info">
               <p class="coach-name">Alexandre Gielen</p>
               <div class="coach-tags"><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-x-core">LM Core</a></div>
-            </div>
-          </div>
-          <div class="coach-card">
-            <div class="coach-photo-wrap"><div class="coach-initials">CC</div></div>
-            <div class="coach-info">
-              <p class="coach-name">Claude Conde</p>
-              <div class="coach-tags"><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-balance">Body Balance</a><a class="coach-tag" href="#cours-lm-grit">LM Grit</a></div>
-            </div>
-          </div>
-          <div class="coach-card">
-            <div class="coach-photo-wrap"><div class="coach-initials">GA</div></div>
-            <div class="coach-info">
-              <p class="coach-name">Geoffrey Arabia</p>
-              <div class="coach-tags"><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-combat">Body Combat</a><a class="coach-tag" href="#cours-lm-grit">LM Grit</a></div>
             </div>
           </div>
           <div class="coach-card">
@@ -772,6 +752,27 @@
               <div class="coach-tags"><a class="coach-tag" href="#cours-lm-dance">Body Jam</a><a class="coach-tag" href="#cours-lm-dance">LM Dance</a></div>
             </div>
           </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">BK</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Boris Kipeya</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-combat">Body Combat</a><a class="coach-tag" href="#cours-body-attack">Body Attack</a></div>
+            </div>
+          </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">CC</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Claude Conde</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-balance">Body Balance</a><a class="coach-tag" href="#cours-lm-grit">LM Grit</a></div>
+            </div>
+          </div>
+          <div class="coach-card">
+            <div class="coach-photo-wrap"><div class="coach-initials">GA</div></div>
+            <div class="coach-info">
+              <p class="coach-name">Geoffrey Arabia</p>
+              <div class="coach-tags"><a class="coach-tag" href="#cours-body-pump">Body Pump</a><a class="coach-tag" href="#cours-body-combat">Body Combat</a><a class="coach-tag" href="#cours-lm-grit">LM Grit</a></div>
+            </div>
+          </div>
         </div>
       </div>
   </div>
@@ -786,13 +787,13 @@
     <div class="lieu-grid">
       <div class="lieu-card reveal">
         <div class="ic">&#128205;</div>
-        <p class="name">Salle Omnisport de Jette</p>
-        <p class="addr">Avenue du Comté de Jette<br>Jette, Belgique</p>
-        <a class="btn btn-ghost btn-sm" style="width:fit-content;" href="https://maps.google.fr/maps?daddr=Salle+Omnisport+de+Jette%2C+Avenue+du+Comt%C3%A9+de+Jette%2C+Jette%2C+Belgique" target="_blank" rel="noopener">Itinéraire</a>
+        <p class="name">Basic Fit Jette VUB</p>
+        <p class="addr">Av. du Laerbeek 125<br>1090 Jette, Belgique</p>
+        <a class="btn btn-ghost btn-sm" style="width:fit-content;" href="https://maps.google.fr/maps?daddr=Basic-Fit+Jette+VUB%2C+Av.+du+Laerbeek+125%2C+1090+Jette%2C+Belgique" target="_blank" rel="noopener">Itinéraire</a>
       </div>
       <div class="map-frame reveal" data-delay="1">
         <iframe
-          src="https://maps.google.com/maps?q=Salle%20Omnisport%20de%20Jette%2C%20Avenue%20du%20Comt%C3%A9%20de%20Jette%2C%20Jette%2C%20Belgique&t=&z=15&ie=UTF8&output=embed"
+          src="https://maps.google.com/maps?q=Basic-Fit%20Jette%20VUB%2C%20Av.%20du%20Laerbeek%20125%2C%201090%20Jette%2C%20Belgique&t=&z=15&ie=UTF8&output=embed"
           allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
@@ -803,19 +804,17 @@
     <div class="section-head reveal">
       <h2>Ils nous accompagnent</h2>
     </div>
-    <!-- TODO: remplacer par les vrais logos partenaires -->
     <div class="partner-grid">
-      <div class="partner-slot reveal">Partenaire</div>
-      <div class="partner-slot reveal">Partenaire</div>
-      <div class="partner-slot reveal">Partenaire</div>
-      <div class="partner-slot reveal">Partenaire</div>
+      <div class="partner-slot reveal"><img src="sponsor-pitpit.jpg" alt="PIT&PIT" loading="lazy"></div>
+      <div class="partner-slot reveal" data-delay="1"><img src="sponsor-studiomira.jpg" alt="Studio Mira" loading="lazy"></div>
+      <div class="partner-slot reveal" data-delay="2"><img src="sponsor-foodmaker.jpg" alt="Foodmaker" loading="lazy"></div>
     </div>
   </section>
 
   <div class="final-cta reveal">
     <h2>Prêt(e) à te dépasser ?</h2>
     <p>Les places sont limitées — réserve ton pass dès maintenant.</p>
-    <a class="btn btn-primary" href="https://www.billetweb.fr/brussels-fitness-festival" target="_blank" rel="noopener">Réserver ma place</a>
+    <a class="btn btn-primary" href="#billetterie">Réserver ma place</a>
   </div>
 
 </div>
