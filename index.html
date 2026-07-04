@@ -113,7 +113,8 @@
     text-align: center;
     padding: 120px 24px 80px;
     position: relative;
-    min-height: 520px;
+    /* 126px = nav height (67px) + ticker height (59px), so the ticker's bottom edge lands on the fold */
+    height: max(calc(100vh - 126px), 420px);
     display: flex;
     flex-direction: column;
     align-items: center;
