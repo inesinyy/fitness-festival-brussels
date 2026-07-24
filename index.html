@@ -140,7 +140,9 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(12,12,12,0.45) 0%, rgba(12,12,12,0.68) 100%);
+    background:
+      radial-gradient(ellipse 60% 55% at 50% 58%, rgba(12,12,12,0.55) 0%, rgba(12,12,12,0) 70%),
+      linear-gradient(to bottom, rgba(12,12,12,0.45) 0%, rgba(12,12,12,0.68) 100%);
     z-index: 1;
   }
   .hero > :not(.hero-video) { position: relative; z-index: 2; }
@@ -155,8 +157,8 @@
   .d-br { display: none; }
   @media (min-width: 768px) { .d-br { display: block; } }
 
-  .hero h1 { font-size: clamp(38px, 7vw, 64px); margin-bottom: 22px; }
-  .hero p { color: var(--cream-dim); max-width: 560px; margin: 0 auto 32px; font-size: 16px; }
+  .hero h1 { font-size: clamp(38px, 7vw, 64px); margin-bottom: 22px; text-shadow: 0 2px 16px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.85); }
+  .hero p { color: var(--cream-dim); max-width: 560px; margin: 0 auto 32px; font-size: 16px; text-shadow: 0 1px 8px rgba(0,0,0,0.7); }
   .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
   /* TICKER */
@@ -165,7 +167,7 @@
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     background: var(--black-soft);
-    margin: 0 0 72px;
+    margin: 0;
     padding: 14px 0;
   }
   .ticker-track { display: flex; width: max-content; animation: ticker 22s linear infinite; }
@@ -231,6 +233,47 @@
   .section-head { margin-bottom: 40px; }
   .section-head h2 { font-size: 28px; margin-bottom: 6px; }
   .section-head p { color: var(--cream-mute); font-size: 14px; }
+
+  /* Visually hidden but still readable by screen readers / SEO — used to keep a real <h2>
+     in the DOM when its visual role is taken over by the decorative .h2-tape banner. */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
+  /* H2 — same yellow/rotated tape look as the warning divider, but static (no marquee) and
+     full-bleed to the viewport edge regardless of how deep it sits in nested containers.
+     .h2-tape itself carries the scroll-linked parallax transform (see JS); the rotation lives
+     on the child so the two transforms never fight each other. */
+  .h2-tape {
+    overflow: hidden;
+    width: 100vw;
+    margin-top: 0;
+    margin-bottom: 36px;
+    padding: 10px 0;
+    line-height: 0;
+    will-change: transform;
+  }
+  .h2-tape-inner {
+    background: var(--yellow);
+    padding: 20px 0;
+    transform: rotate(-2deg);
+    text-align: center;
+  }
+  .h2-tape-text {
+    display: inline-block;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(28px, 5vw, 56px);
+    text-transform: uppercase;
+    color: var(--black);
+    letter-spacing: 1px;
+    line-height: 1;
+    padding: 0 24px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .h2-tape { transform: none !important; }
+  }
 
   /* PROGRAMME — Accordion */
   .timeline {
@@ -306,7 +349,7 @@
     align-items: flex-end;
     margin-bottom: 24px;
   }
-  .coachs-header .section-head { margin-bottom: 0; }
+  .coachs-header .section-head { margin-bottom: 0; flex: 1 1 auto; min-width: 0; }
   .carousel-controls { display: flex; gap: 8px; flex-shrink: 0; }
   .carousel-btn {
     width: 38px; height: 38px;
@@ -377,6 +420,92 @@
     background: rgba(255,209,0,0.1);
     border-color: rgba(255,209,0,0.3);
     color: var(--yellow);
+  }
+
+  /* RETROSPECTIVE */
+  .retro-section { padding: 0 0 80px; scroll-margin-top: 90px; }
+  #programme { scroll-margin-top: 90px; }
+  .retro-track-wrap { overflow: hidden; }
+  .retro-track { display: flex; gap: 16px; transition: transform 0.35s ease; padding-right: 24px; }
+  .retro-card {
+    flex: 0 0 75vw;
+    max-width: 1000px;
+    aspect-ratio: 16/9;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+  .retro-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* APROPOS */
+  .apropos-section { padding: 0 0 80px; scroll-margin-top: 90px; }
+
+  /* Two big panels: photo on one side, concept text (with the H2) on the other. */
+  .apropos-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: stretch;
+    margin-bottom: 56px;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+  .apropos-panel-photo { min-height: 340px; }
+  .apropos-panel-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .apropos-panel-text {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .apropos-panel-text .eyebrow-dark {
+    color: rgba(0,0,0,0.55);
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .apropos-panel-text h2 { color: var(--black); font-size: 32px; margin-bottom: 18px; }
+  .apropos-panel-text p { color: rgba(0,0,0,0.75); font-size: 15px; line-height: 1.8; margin-bottom: 16px; }
+  .apropos-panel-text p:last-child { margin-bottom: 0; }
+
+  /* 4-step timeline — horizontal line with numbered dots on desktop, vertical on mobile. */
+  .apropos-timeline { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .apropos-timeline::before {
+    content: '';
+    position: absolute;
+    top: 17px; left: 0; right: 0;
+    height: 2px;
+    background: var(--border);
+  }
+  .timeline-step { position: relative; padding-top: 52px; }
+  .timeline-dot {
+    position: absolute;
+    top: 0; left: 0;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--yellow);
+    color: var(--black);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Anton', sans-serif;
+    font-size: 15px;
+    box-shadow: 0 0 0 6px var(--black);
+  }
+  .timeline-step p { margin: 0; font-size: 14px; color: var(--cream-dim); }
+  .timeline-step strong { color: var(--cream); }
+
+  @media (max-width: 720px) {
+    .apropos-panels { grid-template-columns: 1fr; }
+    .apropos-panel-text { order: 1; }
+    .apropos-panel-photo { order: 2; min-height: 260px; }
+    .apropos-timeline { grid-template-columns: 1fr; gap: 28px; }
+    .apropos-timeline::before { top: 0; bottom: 0; left: 17px; right: auto; width: 2px; height: auto; }
+    .timeline-step { padding-top: 0; padding-left: 52px; }
   }
 
   /* LIEU */
@@ -514,6 +643,7 @@
   .reveal[data-delay="3"] { transition-delay: 360ms; }
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
+    .ticker-track, .warning-track { animation: none; }
   }
 
   @media (max-width: 720px) {
@@ -522,6 +652,7 @@
     .coach-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .lieu-grid { grid-template-columns: 1fr; }
     .partner-grid { grid-template-columns: repeat(2, 1fr); }
+    .retro-card { flex-basis: 88vw; aspect-ratio: 4/3; }
   }
 </style>
 </head>
@@ -533,12 +664,17 @@
   <div class="nav-inner">
     <a href="#" class="logo"><img src="logo.jpg" alt="FFB — Fitness Festival Brussels"></a>
     <ul class="nav-links">
+      <li><a href="#retrospective">Rétrospective</a></li>
+      <li><a href="#apropos">À propos</a></li>
       <li><a href="#programme">Programme</a></li>
       <li><a href="#coachs">Coachs</a></li>
-      <li><a href="#lieu">Lieu</a></li>
+      <!-- Lieu mis de côté — décommenter pour réactiver : <li><a href="#lieu">Lieu</a></li> -->
       <li><a href="#partenaires">Partenaires</a></li>
     </ul>
-    <a class="btn btn-primary" href="#billetterie">Billets</a>
+    <!-- Billetterie fermée (inscriptions édition 2 pas encore ouvertes). Pour réactiver : remplacer le lien
+         ci-dessous par <a class="btn btn-primary" href="#billetterie">Billets</a> et décommenter la section
+         #billetterie plus bas dans le document. -->
+    <a class="btn btn-primary" href="https://www.instagram.com/ffb.fitnessevent/" target="_blank" rel="noopener">Suivre l'actu</a>
   </div>
 </nav>
 
@@ -547,8 +683,8 @@
   <p class="eyebrow">FITNESS FESTIVAL BRUSSELS</p>
   <h1>Le plus grand<br class="d-br"> festival fitness de Bruxelles</h1>
   <div class="hero-ctas">
-    <a class="btn btn-primary" href="#billetterie">Réserver ma place</a>
-    <a class="btn btn-ghost" href="#programme">Voir le programme</a>
+    <a class="btn btn-primary" href="#retrospective">Voir la rétrospective</a>
+    <a class="btn btn-ghost" href="#apropos">Découvrir le concept</a>
   </div>
 </header>
 
@@ -562,7 +698,7 @@
       <div class="ticker-sep">✦</div>
       <div class="ticker-item"><span class="ic">💪</span><strong>Tous niveaux</strong><span>Débutant à confirmé</span></div>
       <div class="ticker-sep">✦</div>
-      <div class="ticker-item"><span class="ic">🎟️</span><strong>Places limitées</strong><span>Réservation en ligne</span></div>
+      <div class="ticker-item"><span class="ic">🎉</span><strong>Édition 2026 terminée</strong><span>Merci d'avoir participé !</span></div>
       <div class="ticker-sep">✦</div>
       <div class="ticker-item"><span class="ic">🏋️</span><strong>8 cours collectifs</strong><span>Body Pump · Combat · Dance · Grit…</span></div>
       <div class="ticker-sep">✦</div>
@@ -573,7 +709,7 @@
       <div class="ticker-sep">✦</div>
       <div class="ticker-item"><span class="ic">💪</span><strong>Tous niveaux</strong><span>Débutant à confirmé</span></div>
       <div class="ticker-sep">✦</div>
-      <div class="ticker-item"><span class="ic">🎟️</span><strong>Places limitées</strong><span>Réservation en ligne</span></div>
+      <div class="ticker-item"><span class="ic">🎉</span><strong>Édition 2026 terminée</strong><span>Merci d'avoir participé !</span></div>
       <div class="ticker-sep">✦</div>
       <div class="ticker-item"><span class="ic">🏋️</span><strong>8 cours collectifs</strong><span>Body Pump · Combat · Dance · Grit…</span></div>
       <div class="ticker-sep">✦</div>
@@ -582,11 +718,107 @@
 
 <div class="wrap">
 
-  <p class="reveal" style="color:var(--cream-dim);max-width:600px;margin:0 auto 80px;font-size:16px;text-align:center;line-height:1.7;">Le 11 juillet, rejoignez-nous pour une journée placée sous le signe du sport, de l'énergie et du partage. Plus de 8 heures de cours collectifs, dans une ambiance unique où toute une communauté se rassemble autour d'une même passion.</p>
+  <section id="apropos" class="apropos-section">
+    <div class="apropos-panels">
+      <div class="apropos-panel apropos-panel-photo reveal">
+        <img src="apropos-photo.jpg" alt="Cours collectif au Fitness Festival Brussels" loading="lazy">
+      </div>
+      <div class="apropos-panel apropos-panel-text reveal" data-delay="1">
+        <p class="eyebrow-dark">FFB en quelques mots</p>
+        <h2>Le concept</h2>
+        <p>FFB (Fitness Festival Brussels) est un événement d'une journée qui réunit plusieurs coachs et formats de cours collectifs sous un même toit, à Bruxelles. L'idée : sortir les cours de la salle de sport habituelle et créer un vrai moment de communauté autour du fitness, ambiance festival à l'appui — musique, lumières, énergie collective.</p>
+        <p>Tous les niveaux sont bienvenus. Que tu viennes pour un seul cours ou pour enchaîner toute la journée, l'objectif reste le même : transpirer, partager et repartir avec le sourire.</p>
+      </div>
+    </div>
+    <div class="apropos-timeline reveal" data-delay="2">
+      <div class="timeline-step">
+        <span class="timeline-dot">1</span>
+        <p><strong>Accueil</strong> — retrait du badge à l'entrée et découverte des espaces partenaires et nutrition.</p>
+      </div>
+      <div class="timeline-step">
+        <span class="timeline-dot">2</span>
+        <p><strong>Cours collectifs</strong> — 8 formats s'enchaînent de 8h45 à 18h : Body Pump, Body Attack, LM Grit, X Core, Afro Dance, Body Combat…, animés par nos coachs.</p>
+      </div>
+      <div class="timeline-step">
+        <span class="timeline-dot">3</span>
+        <p><strong>Pauses & récupération</strong> — entre les cours, de quoi se restaurer et recharger auprès des stands partenaires.</p>
+      </div>
+      <div class="timeline-step">
+        <span class="timeline-dot">4</span>
+        <p><strong>Grand final</strong> — la journée se termine en beauté avec le Body Combat, façon champion.</p>
+      </div>
+    </div>
+  </section>
 
-  <section id="programme">
+  <!-- Billetterie fermée (inscriptions édition 2 pas encore ouvertes) — décommenter ce bloc pour la réactiver,
+       et restaurer le lien "Billets" dans le nav + le bouton "Réserver ma place" du final-cta plus bas.
+  <section id="billetterie">
     <div class="section-head reveal">
-      <h2>Le déroulé de la journée</h2>
+      <h2>Choisis ton pass</h2>
+      <p>Optez pour la formule qui vous convient</p>
+    </div>
+    <div class="billet-grid">
+      <div class="billet-card reveal">
+        <span class="billet-badge">Populaire</span>
+        <p class="billet-type">Pass journée entière</p>
+        <p class="billet-price">40€</p>
+        <ul class="billet-perks">
+          <li class="billet-perk"><span class="billet-check">✓</span><span>Accès à tous les cours de la journée</span></li>
+          <li class="billet-perk"><span class="billet-check">✓</span><span>Espaces partenaires et nutrition</span></li>
+          <li class="billet-perk"><span class="billet-check">✓</span><span>Animations toute la journée</span></li>
+        </ul>
+        <a class="btn btn-primary" href="https://www.billetweb.fr/shop.php?event=brussels-fitness-festival" onclick="var w=window.open('https://www.billetweb.fr/shop.php?event=brussels-fitness-festival&popup=1','Reserver','width=650,height=600,top=100,left=100,toolbar=no,resizable=yes,scrollbars=yes,status=no'); w.focus(); return false;">Réserver</a>
+      </div>
+      <div class="billet-card reveal" data-delay="1">
+        <span class="billet-badge" aria-hidden="true" style="visibility:hidden;">·</span>
+        <p class="billet-type">Cours à l'unité</p>
+        <p class="billet-price">10€</p>
+        <ul class="billet-perks">
+          <li class="billet-perk"><span class="billet-check">✓</span><span>Accès à 1 cours au choix</span></li>
+          <li class="billet-perk"><span class="billet-check">✓</span><span>Espaces partenaires et nutrition</span></li>
+          <li class="billet-perk"><span class="billet-check">✓</span><span>Animations toute la journée</span></li>
+        </ul>
+        <a class="btn btn-primary" href="https://www.billetweb.fr/shop.php?event=brussels-fitness-festival" onclick="var w=window.open('https://www.billetweb.fr/shop.php?event=brussels-fitness-festival&popup=1','Reserver','width=650,height=600,top=100,left=100,toolbar=no,resizable=yes,scrollbars=yes,status=no'); w.focus(); return false;">Réserver</a>
+      </div>
+    </div>
+    <div class="billet-secure reveal" data-delay="2">
+      <span class="billet-secure-ic">✔</span>
+      <p>Paiement sécurisé via Billetweb · billet envoyé par e-mail avec QR code · contrôle d'accès le jour J</p>
+    </div>
+  </section>
+  -->
+
+</div>
+
+<section id="retrospective" class="retro-section">
+  <div class="coachs-header wrap">
+    <div class="section-head">
+      <h2 class="reveal">La rétrospective</h2>
+      <p>Les meilleurs moments de l'édition 2026, en images</p>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-btn prev" aria-label="Précédent">‹</button>
+      <button class="carousel-btn next" aria-label="Suivant">›</button>
+    </div>
+  </div>
+  <div class="retro-track-wrap">
+    <div class="retro-track">
+      <div class="retro-card"><img src="retro-1.jpg" alt="Cours collectif à l'édition 2026 du Fitness Festival Brussels" loading="lazy"></div>
+      <div class="retro-card"><img src="retro-2.jpg" alt="Cours collectif à l'édition 2026 du Fitness Festival Brussels" loading="lazy"></div>
+      <div class="retro-card"><img src="retro-3.jpg" alt="Cours collectif à l'édition 2026 du Fitness Festival Brussels" loading="lazy"></div>
+      <div class="retro-card"><img src="retro-4.jpg" alt="Cours collectif à l'édition 2026 du Fitness Festival Brussels" loading="lazy"></div>
+      <div class="retro-card"><img src="retro-5.jpg" alt="Cours collectif à l'édition 2026 du Fitness Festival Brussels" loading="lazy"></div>
+      <div class="retro-card"><img src="retro-6.jpg" alt="Cours collectif à l'édition 2026 du Fitness Festival Brussels" loading="lazy"></div>
+      <div class="retro-card"><img src="retro-7.jpg" alt="Cours collectif à l'édition 2026 du Fitness Festival Brussels" loading="lazy"></div>
+      <div class="retro-card"><img src="retro-8.jpg" alt="Cours collectif à l'édition 2026 du Fitness Festival Brussels" loading="lazy"></div>
+      <div class="retro-card"><img src="retro-9.jpg" alt="Cours collectif à l'édition 2026 du Fitness Festival Brussels" loading="lazy"></div>
+      <div class="retro-card"><img src="retro-10.jpg" alt="Cours collectif à l'édition 2026 du Fitness Festival Brussels" loading="lazy"></div>
+    </div>
+  </div>
+
+  <div id="programme" class="wrap" style="margin-top:64px;">
+    <div class="section-head reveal">
+      <h2>Programme de l'édition précédente</h2>
       <p>8 cours, 8 énergies différentes, une seule journée</p>
     </div>
     <div class="timeline reveal" data-delay="1">
@@ -630,44 +862,8 @@
         <p>Espace nutrition sportive, stands de marques partenaires, animations et surprises tout au long de la journée.</p>
       </div>
     </div>
-  </section>
-
-  <section id="billetterie">
-    <div class="section-head reveal">
-      <h2>Choisis ton pass</h2>
-      <p>Optez pour la formule qui vous convient</p>
-    </div>
-    <div class="billet-grid">
-      <div class="billet-card reveal">
-        <span class="billet-badge">Populaire</span>
-        <p class="billet-type">Pass journée entière</p>
-        <p class="billet-price">40€</p>
-        <ul class="billet-perks">
-          <li class="billet-perk"><span class="billet-check">✓</span><span>Accès à tous les cours de la journée</span></li>
-          <li class="billet-perk"><span class="billet-check">✓</span><span>Espaces partenaires et nutrition</span></li>
-          <li class="billet-perk"><span class="billet-check">✓</span><span>Animations toute la journée</span></li>
-        </ul>
-        <a class="btn btn-primary" href="https://www.billetweb.fr/shop.php?event=brussels-fitness-festival" onclick="var w=window.open('https://www.billetweb.fr/shop.php?event=brussels-fitness-festival&popup=1','Reserver','width=650,height=600,top=100,left=100,toolbar=no,resizable=yes,scrollbars=yes,status=no'); w.focus(); return false;">Réserver</a>
-      </div>
-      <div class="billet-card reveal" data-delay="1">
-        <span class="billet-badge" aria-hidden="true" style="visibility:hidden;">·</span>
-        <p class="billet-type">Cours à l'unité</p>
-        <p class="billet-price">10€</p>
-        <ul class="billet-perks">
-          <li class="billet-perk"><span class="billet-check">✓</span><span>Accès à 1 cours au choix</span></li>
-          <li class="billet-perk"><span class="billet-check">✓</span><span>Espaces partenaires et nutrition</span></li>
-          <li class="billet-perk"><span class="billet-check">✓</span><span>Animations toute la journée</span></li>
-        </ul>
-        <a class="btn btn-primary" href="https://www.billetweb.fr/shop.php?event=brussels-fitness-festival" onclick="var w=window.open('https://www.billetweb.fr/shop.php?event=brussels-fitness-festival&popup=1','Reserver','width=650,height=600,top=100,left=100,toolbar=no,resizable=yes,scrollbars=yes,status=no'); w.focus(); return false;">Réserver</a>
-      </div>
-    </div>
-    <div class="billet-secure reveal" data-delay="2">
-      <span class="billet-secure-ic">✔</span>
-      <p>Paiement sécurisé via Billetweb · billet envoyé par e-mail avec QR code · contrôle d'accès le jour J</p>
-    </div>
-  </section>
-
-</div>
+  </div>
+</section>
 
 <div class="warning-tape-outer">
   <div class="warning-tape">
@@ -785,6 +981,8 @@
 
 <div class="wrap">
 
+  <!-- Lieu mis de côté (pas de date/lieu confirmés pour l'édition 2) — décommenter pour réactiver,
+       et restaurer le lien "Lieu" dans le nav (juste au-dessus du lien "Partenaires").
   <section id="lieu">
     <div class="section-head reveal">
       <h2>Le lieu</h2>
@@ -804,6 +1002,7 @@
       </div>
     </div>
   </section>
+  -->
 
   <section id="partenaires">
     <div class="section-head reveal">
@@ -817,9 +1016,9 @@
   </section>
 
   <div class="final-cta reveal">
-    <h2>Prêt(e) à te dépasser ?</h2>
-    <p>Les places sont limitées — réserve ton pass dès maintenant.</p>
-    <a class="btn btn-primary" href="#billetterie">Réserver ma place</a>
+    <h2>On se retrouve pour l'édition 2 ?</h2>
+    <p>Les inscriptions ne sont pas encore ouvertes — suis-nous pour être prévenu(e) en priorité.</p>
+    <a class="btn btn-primary" href="https://www.instagram.com/ffb.fitnessevent/" target="_blank" rel="noopener">Suivre l'actu</a>
   </div>
 
 </div>
@@ -844,15 +1043,11 @@ document.querySelectorAll('.t-row').forEach(function(row) {
   });
 });
 
-// Carousel coachs — infinite loop
-(function() {
-  var track = document.querySelector('.coach-track');
-  var btnPrev = document.querySelector('.carousel-btn.prev');
-  var btnNext = document.querySelector('.carousel-btn.next');
-
+// Carousels — infinite loop (used for both #coachs and #retrospective)
+function initCarousel(track, btnPrev, btnNext, cardSelector) {
   // Build 3× track: [clones][originals][clones]
   var origCards = Array.from(track.children);
-  var N = origCards.length; // 11
+  var N = origCards.length;
 
   origCards.forEach(function(card) {
     track.appendChild(card.cloneNode(true));
@@ -861,26 +1056,12 @@ document.querySelectorAll('.t-row').forEach(function(row) {
     track.insertBefore(origCards[i].cloneNode(true), track.firstChild);
   }
 
-  // Badge delegation — covers originals AND clones
-  track.addEventListener('click', function(e) {
-    var tag = e.target.closest('.coach-tag[href]');
-    if (!tag) return;
-    var href = tag.getAttribute('href');
-    if (!href || href[0] !== '#') return;
-    var target = document.querySelector(href);
-    if (!target || !target.classList.contains('t-item')) return;
-    e.preventDefault();
-    document.querySelectorAll('.t-item.open').forEach(function(el) { el.classList.remove('open'); });
-    target.classList.add('open');
-    setTimeout(function() { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 50);
-  });
-
   var STEP = 1;
   var animating = false;
   var offset = 0;
 
   function cardStep() {
-    var card = track.querySelector('.coach-card');
+    var card = track.querySelector(cardSelector);
     return card ? card.offsetWidth + 14 : 224;
   }
 
@@ -909,7 +1090,7 @@ document.querySelectorAll('.t-row').forEach(function(row) {
   }
 
   // Start with 1/4 of first card peeking on the left
-  var peekOffset = Math.round((track.querySelector('.coach-card').offsetWidth || 210) * 0.25);
+  var peekOffset = Math.round((track.querySelector(cardSelector).offsetWidth || 210) * 0.25);
   jump(N * cardStep() + peekOffset);
 
   btnNext.addEventListener('click', function() {
@@ -928,6 +1109,89 @@ document.querySelectorAll('.t-row').forEach(function(row) {
 
   btnPrev.disabled = false;
   btnNext.disabled = false;
+}
+
+(function() {
+  var coachTrack = document.querySelector('.coach-track');
+
+  // Badge delegation — covers originals AND clones
+  coachTrack.addEventListener('click', function(e) {
+    var tag = e.target.closest('.coach-tag[href]');
+    if (!tag) return;
+    var href = tag.getAttribute('href');
+    if (!href || href[0] !== '#') return;
+    var target = document.querySelector(href);
+    if (!target || !target.classList.contains('t-item')) return;
+    e.preventDefault();
+    document.querySelectorAll('.t-item.open').forEach(function(el) { el.classList.remove('open'); });
+    target.classList.add('open');
+    setTimeout(function() { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 50);
+  });
+
+  var coachBtns = document.querySelectorAll('#coachs .carousel-btn');
+  initCarousel(coachTrack, coachBtns[0], coachBtns[1], '.coach-card');
+
+  var retroTrack = document.querySelector('.retro-track');
+  var retroBtns = document.querySelectorAll('#retrospective .carousel-btn');
+  initCarousel(retroTrack, retroBtns[0], retroBtns[1], '.retro-card');
+})();
+
+// Final-cta heading only — same yellow/rotated tape look as the warning divider, but static
+// and full-bleed. The real <h2> stays in the DOM (visually hidden) for accessibility/SEO;
+// the tape is a decorative, aria-hidden duplicate built from its text. Every other section
+// heading stays plain (cream text on black, no tape) per the original design.
+var h2Tapes = [];
+(function() {
+  document.querySelectorAll('.final-cta h2').forEach(function(h2) {
+    var text = h2.textContent.trim();
+    h2.classList.add('sr-only');
+
+    var outer = document.createElement('div');
+    outer.className = 'h2-tape';
+    outer.setAttribute('aria-hidden', 'true');
+
+    var inner = document.createElement('div');
+    inner.className = 'h2-tape-inner';
+
+    var label = document.createElement('span');
+    label.className = 'h2-tape-text';
+    label.textContent = text;
+
+    inner.appendChild(label);
+    outer.appendChild(inner);
+    h2.insertAdjacentElement('afterend', outer);
+    h2Tapes.push(outer);
+  });
+
+  // True edge-to-edge width regardless of how deep the tape sits in nested/flex containers:
+  // measure its natural offset from the viewport's left edge and cancel it out with a margin.
+  function fitFullBleed() {
+    h2Tapes.forEach(function(tape) {
+      tape.style.marginLeft = '0';
+      tape.style.marginLeft = (-tape.getBoundingClientRect().left) + 'px';
+    });
+  }
+  fitFullBleed();
+  window.addEventListener('resize', fitFullBleed);
+})();
+
+// Parallax — each tape drifts vertically at a different rate than the normal scroll as it
+// crosses the viewport, so the section content right behind it visibly separates from it
+// instead of scrolling past in lockstep.
+(function() {
+  if (!h2Tapes.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var MAX_DRIFT = 26; // px
+  function parallax() {
+    var vh = window.innerHeight;
+    h2Tapes.forEach(function(tape) {
+      var top = tape.getBoundingClientRect().top;
+      var progress = 1 - Math.min(1, Math.max(0, top / vh));
+      tape.style.transform = 'translateY(' + (-progress * MAX_DRIFT) + 'px)';
+    });
+  }
+  window.addEventListener('scroll', parallax, { passive: true });
+  window.addEventListener('resize', parallax);
+  parallax();
 })();
 
 (function() {
