@@ -431,16 +431,19 @@
   /* RETROSPECTIVE */
   .retro-section { padding: 0 0 80px; scroll-margin-top: 90px; }
   #programme { scroll-margin-top: 90px; }
-  .retro-track-wrap { overflow: hidden; }
-  .retro-track { display: flex; gap: 16px; transition: transform 0.35s ease; padding-right: 24px; }
+  .retro-track-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .retro-track-wrap::-webkit-scrollbar { display: none; }
+  .retro-track { display: flex; gap: 0; }
   .retro-card {
     flex: 0 0 75vw;
     max-width: 1000px;
     aspect-ratio: 16/9;
-    border-radius: var(--radius);
     overflow: hidden;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-sm);
   }
   .retro-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
@@ -796,16 +799,8 @@
 </div>
 
 <section id="retrospective" class="retro-section">
-  <div class="coachs-header wrap">
-    <div class="section-head">
-      <h2 class="reveal">Édition précédente</h2>
-      <p>Les meilleurs moments de l'édition 2026, en images</p>
-    </div>
-    <div class="carousel-controls">
-      <button class="carousel-btn prev" aria-label="Précédent">‹</button>
-      <button class="carousel-btn next" aria-label="Suivant">›</button>
-    </div>
-  </div>
+  <h2 class="sr-only">Édition précédente</h2>
+  <p class="sr-only">Les meilleurs moments de l'édition 2026, en images</p>
   <div class="retro-track-wrap">
     <div class="retro-track">
       <div class="retro-card"><img src="retro-1.jpg" alt="Cours collectif à l'édition 2026 du Fitness Festival Brussels" loading="lazy"></div>
@@ -1135,10 +1130,59 @@ function initCarousel(track, btnPrev, btnNext, cardSelector) {
 
   var coachBtns = document.querySelectorAll('#coachs .carousel-btn');
   initCarousel(coachTrack, coachBtns[0], coachBtns[1], '.coach-card');
+})();
 
-  var retroTrack = document.querySelector('.retro-track');
-  var retroBtns = document.querySelectorAll('#retrospective .carousel-btn');
-  initCarousel(retroTrack, retroBtns[0], retroBtns[1], '.retro-card');
+// Rétrospective — self-playing filmstrip: no buttons, auto-scrolls continuously via a native
+// horizontally-scrollable track (so trackpad/touch/wheel scrolling works too), pausing while
+// the user is interacting with it and resuming shortly after.
+(function() {
+  var wrap = document.querySelector('.retro-track-wrap');
+  var track = document.querySelector('.retro-track');
+  if (!wrap || !track) return;
+
+  var originalCards = Array.from(track.children);
+  originalCards.forEach(function(card) { track.appendChild(card.cloneNode(true)); });
+
+  var setWidth = 0;
+  function measure() {
+    setWidth = 0;
+    for (var i = 0; i < originalCards.length; i++) {
+      setWidth += track.children[i].getBoundingClientRect().width;
+    }
+  }
+  measure();
+  window.addEventListener('resize', measure);
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var SPEED = 0.6; // px per frame
+  var paused = false;
+  var resumeTimer = null;
+
+  function pause() { paused = true; clearTimeout(resumeTimer); }
+  function scheduleResume() {
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(function() { paused = false; }, 1800);
+  }
+
+  wrap.addEventListener('mouseenter', pause);
+  wrap.addEventListener('mouseleave', scheduleResume);
+  wrap.addEventListener('touchstart', pause, { passive: true });
+  wrap.addEventListener('touchend', scheduleResume);
+  wrap.addEventListener('wheel', function() { pause(); scheduleResume(); }, { passive: true });
+  wrap.addEventListener('pointerdown', pause);
+  wrap.addEventListener('pointerup', scheduleResume);
+
+  function tick() {
+    if (!paused && setWidth > 0) {
+      wrap.scrollLeft += SPEED;
+      if (wrap.scrollLeft >= setWidth) {
+        wrap.scrollLeft -= setWidth;
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 })();
 
 // Final-cta heading only — same yellow/rotated tape look as the warning divider, but static
