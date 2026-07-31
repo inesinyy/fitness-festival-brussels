@@ -114,7 +114,10 @@
   .btn-ghost:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.16); }
   .btn-sm { padding: 7px 12px; font-size: 13px; }
 
-  .menu-toggle { display: none; background: none; border: none; color: var(--cream); font-size: 24px; cursor: pointer; }
+  .nav-actions { display: flex; align-items: center; gap: 10px; }
+  .menu-toggle { display: none; background: none; border: none; color: var(--cream); font-size: 24px; line-height: 1; cursor: pointer; padding: 2px 4px; }
+
+  .mobile-menu { display: none; }
 
   /* HERO */
   .hero {
@@ -683,6 +686,27 @@
   @media (max-width: 720px) {
     .nav-links { display: none; }
     .menu-toggle { display: block; }
+    .mobile-menu {
+      display: block;
+      max-height: 0;
+      overflow: hidden;
+      background: var(--black-soft);
+      border-bottom: 1px solid var(--border);
+      transition: max-height 0.3s ease;
+    }
+    .mobile-menu.open { max-height: 320px; }
+    .mobile-menu ul { list-style: none; display: flex; flex-direction: column; padding: 4px 24px 12px; }
+    .mobile-menu a {
+      display: block;
+      padding: 12px 0;
+      color: var(--cream-dim);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mobile-menu li:last-child a { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--cream); }
     .coach-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .lieu-grid { grid-template-columns: 1fr; }
     .partner-grid { grid-template-columns: repeat(2, 1fr); }
@@ -698,17 +722,30 @@
   <div class="nav-inner">
     <a href="#" class="logo"><img src="logo.jpg" alt="FFB — Fitness Festival Brussels"></a>
     <ul class="nav-links">
-      <li><a href="#retrospective">Rétrospective</a></li>
       <li><a href="#apropos">À propos</a></li>
-      <li><a href="#programme">Programme</a></li>
+      <li><a href="#retrospective">Photos</a></li>
+      <li><a href="#programme">Lineup</a></li>
       <li><a href="#coachs">Coachs</a></li>
       <!-- Lieu mis de côté — décommenter pour réactiver : <li><a href="#lieu">Lieu</a></li> -->
       <li><a href="#partenaires">Partenaires</a></li>
     </ul>
-    <!-- Billetterie fermée (inscriptions édition 2 pas encore ouvertes). Pour réactiver : remplacer le lien
-         ci-dessous par <a class="btn btn-primary" href="#billetterie">Billets</a> et décommenter la section
-         #billetterie plus bas dans le document. -->
-    <a class="btn btn-primary" href="https://www.instagram.com/ffb.fitnessevent/" target="_blank" rel="noopener">Suivre l'actu</a>
+    <div class="nav-actions">
+      <!-- Billetterie fermée (inscriptions édition 2 pas encore ouvertes). Pour réactiver : remplacer le lien
+           ci-dessous par <a class="btn btn-primary" href="#billetterie">Billets</a> et décommenter la section
+           #billetterie plus bas dans le document. -->
+      <a class="btn btn-primary" href="https://www.instagram.com/ffb.fitnessevent/" target="_blank" rel="noopener">Suivre l'actu</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#retrospective">Photos</a></li>
+      <li><a href="#programme">Lineup</a></li>
+      <li><a href="#coachs">Coachs</a></li>
+      <!-- Lieu mis de côté — décommenter pour réactiver : <li><a href="#lieu">Lieu</a></li> -->
+      <li><a href="#partenaires">Partenaires</a></li>
+    </ul>
   </div>
 </nav>
 
@@ -1060,6 +1097,26 @@
 </footer>
 
 <script>
+// Mobile nav — burger toggles a slide-down panel; closes on link click or resize past breakpoint.
+(function() {
+  var toggle = document.getElementById('menuToggle');
+  var menu = document.getElementById('mobileMenu');
+  if (!toggle || !menu) return;
+
+  function setOpen(open) {
+    menu.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open);
+    toggle.textContent = open ? '✕' : '☰';
+  }
+  toggle.addEventListener('click', function() { setOpen(!menu.classList.contains('open')); });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { setOpen(false); });
+  });
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 720) setOpen(false);
+  });
+})();
+
 // Accordion programme
 document.querySelectorAll('.t-row').forEach(function(row) {
   row.addEventListener('click', function() {
