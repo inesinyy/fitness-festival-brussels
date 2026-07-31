@@ -160,7 +160,6 @@
   .hero h1 {
     font-size: clamp(38px, 7vw, 64px);
     margin-bottom: 22px;
-    text-shadow: 0 2px 16px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.85);
     font-family: 'Syne Mono', 'Anton', sans-serif;
   }
   .hero-accent { color: var(--yellow); }
@@ -751,7 +750,7 @@
 
 <header class="hero">
   <img class="hero-video" src="hero.jpg" alt="Fitness Festival Brussels">
-  <h1>Le plus grand<br class="d-br"> festival <span class="hero-accent">fitness</span> de Bruxelles</h1>
+  <h1>Le plus grand<br class="d-br"> <span class="hero-accent">festival</span> <span class="hero-accent">fitness</span> de<br class="d-br"> Bruxelles</h1>
   <div class="hero-ctas">
     <a class="btn btn-primary" href="#retrospective">Revoir la première édition</a>
     <a class="btn btn-ghost" href="#apropos">Découvrir le concept</a>
@@ -1110,7 +1109,21 @@
   }
   toggle.addEventListener('click', function() { setOpen(!menu.classList.contains('open')); });
   menu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() { setOpen(false); });
+    a.addEventListener('click', function(e) {
+      var href = a.getAttribute('href');
+      var target = href && href.charAt(0) === '#' ? document.querySelector(href) : null;
+      if (!target) { setOpen(false); return; }
+      // Collapse instantly (no transition) so the panel's height is out of the
+      // layout before we scroll — otherwise the browser computes the scroll
+      // target against the still-expanded menu and lands short.
+      e.preventDefault();
+      menu.style.transition = 'none';
+      setOpen(false);
+      menu.offsetHeight;
+      menu.style.transition = '';
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.pushState(null, '', href);
+    });
   });
   window.addEventListener('resize', function() {
     if (window.innerWidth > 720) setOpen(false);
